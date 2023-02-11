@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meet Doctor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../../dist/main.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <nav x-data="{ navbarMobileOpen: false }" class="bg-white">
+      <div class="max-w-7xl mx-auto px-4 lg:px-14 pt-6 lg:py-10">
+        <div class="flex justify-between h-16">
+          <div class="flex flex-auto justify-between">
+
+            <!-- Logo Brand -->
+            <a href="../../index.html" class="flex-shrink-0 flex items-center">
+              <img
+                class="h-12 lg:h-16 w-auto"
+                src="/src/assets/images/logo.png"
+                alt="Meet Doctor Logo"
+              />
+            </a>
+
+            <!-- Navigation Menu -->
+            <div class="hidden lg:ml-6 lg:flex lg:space-x-12">
+              
+              <!-- Active Link: 
+                  "text-[#1E2B4F] after:absolute after:content-[''] after:border-b-2 
+                  after:border-[#0D63F5] after:w-8/12 after:-translate-x-1/2 
+                  after:bottom-3 after:left-1/2 font-semibold", 
+                  
+                  Default Link: 
+                  "text-[#1E2B4F] hover:text-gray-500 inline-flex 
+                  items-center px-1 pt-1 text-lg font-medium"
+             -->
+              <a
+                href="#"
+                class="text-[#1E2B4F] relative after:absolute after:content-[''] after:border-b-2 after:border-[#0D63F5] after:w-8/12 after:-translate-x-1/2 after:bottom-3 after:left-1/2 font-semibold inline-flex items-center px-1 text-lg"
+              >
+                Home
+              </a>
+              <a
+                href="#"
+                class="text-[#1E2B4F] relative hover:text-gray-500 inline-flex items-center px-1 pt-1 text-lg font-medium"
+              >
+                Featured
+              </a>
+              <a
+                href="#"
+                class="text-[#1E2B4F] relative hover:text-gray-500 inline-flex items-center px-1 pt-1 text-lg font-medium"
+              >
+                Category
+              </a>
+              <a
+                href="#"
+                class="text-[#1E2B4F] relative hover:text-gray-500 inline-flex items-center px-1 pt-1 text-lg font-medium"
+              >
+                Pricing
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Button (Authenticated) -->
+          <div class="hidden lg:ml-10 lg:flex lg:items-center border-l pl-4 pt-2">
+            <div x-data="{ profileDekstopOpen: false }" class="ml-3 relative">
+              <div>
+                <button
+                  type="button"
+                  class="bg-white rounded-full flex text-sm focus:outline-none"
+                  
+                  id="user-menu-button"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  @click="profileDekstopOpen = ! profileDekstopOpen"
+                >
+                <!-- focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 -->
+                  <span class="sr-only">Open user menu</span>
+                  <div class="text-right mr-5">
+                    <div class="text-base font-medium text-[#1E2B4F]">Hi, Shayna</div>
+                    <div class="text-sm text-[#AFAEC3]">
+                      Pasien
+                    </div>
+                  </div>
+                  <img
+                    class="h-12 w-12 rounded-full ring-1 ring-offset-4 ring-[#0D63F3]"
+                    src="/src/assets/images/authenticated-user.svg"
+                    alt="User Profile"
+                  />
+                </button>
+              </div>
+              <div
+                x-show="profileDekstopOpen"
+                @click.outside="profileDekstopOpen = false"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 scale-95"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-95"
+                class="origin-top-right absolute z-30 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="user-menu-button"
+                tabindex="-1"
+              >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-[#1E2B4F] hover:bg-gray-100"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="user-menu-item-0"
+                  >Your Profile</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-[#1E2B4F] hover:bg-gray-100"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="user-menu-item-1"
+                  >Settings</a
+                >
+                <a
+                  href="../../index.html"
+                  class="block px-4 py-2 text-sm text-[#1E2B4F] hover:bg-gray-100"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="user-menu-item-2"
+                  >Sign out</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Toggle button -->
+          <div class="-mr-2 flex items-center lg:hidden">
+            <button
+              type="button"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0D63F3]"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              @click="navbarMobileOpen = ! navbarMobileOpen"
+            >
+              <span class="sr-only">Open main menu</span>
+              
+              <!--
+                Icon when menu is closed.
+                Menu open: "hidden", Menu closed: "block"
+              -->
+              <svg
+                x-show="!navbarMobileOpen"
+                class="block h-8 w-8"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+
+              <!--
+                Icon when menu is open.
+                Menu open: "block", Menu closed: "hidden"
+              -->
+              <svg
+                x-show="navbarMobileOpen"
+                class="block h-8 w-8"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile menu, show/hide based on menu state. -->
+      <div class="lg:hidden" id="mobile-menu" x-show="navbarMobileOpen">
+        <div class="pt-2 pb-3 space-y-1">
+
+          <!-- 
+            Active Link: "bg-indigo-50 border-[#0D63F5] text-[#1E2B4F]", 
+            
+            Default Link: "border-transparent text-[#1E2B4F] hover:bg-gray-50 
+                      hover:border-gray-300 hover:text-gray-700" 
+          -->
+          <a
+            href="#"
+            class="bg-indigo-50 border-[#0D63F5] text-[#1E2B4F] block pl-3 pr-4 py-2 border-l-4 text-base font-semibold"
+            >Home</a
+          >
+          <a
+            href="#"
+            class="border-transparent text-[#1E2B4F] hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+            >Featured</a
+          >
+          <a
+            href="#"
+            class="border-transparent text-[#1E2B4F] hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+            >Category</a
+          >
+          <a
+            href="#"
+            class="border-transparent text-[#1E2B4F] hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+            >Pricing</a
+          >
+        </div>
+
+        <!-- Profile (Mobile Authenticated) -->
+        <div
+          x-data="{ profileMobilenOpen: false }"
+          class="pt-4 pb-3 border-t border-gray-200"
+        >
+          <div
+            @click="profileMobilenOpen = ! profileMobilenOpen"
+            class="flex items-center px-4 cursor-pointer"
+          >
+            <div class="flex-shrink-0">
+              <img
+                class="h-10 w-10 rounded-full ring-1 ring-offset-4 ring-[#0D63F3]"
+                src="/src/assets/images/authenticated-user.svg"
+                alt=""
+              />
+            </div>
+            <div class="ml-3">
+              <div class="text-base font-medium text-[#1E2B4F]">Hi, Shayna</div>
+              <div class="text-sm text-[#AFAEC3]">
+                Pasien
+              </div>
+            </div>
+          </div>
+          <div x-show="profileMobilenOpen" class="mt-3 space-y-1">
+            <a
+              href="#"
+              class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-[#1E2B4F] hover:bg-gray-100"
+              >Your Profile</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-[#1E2B4F] hover:bg-gray-100"
+              >Settings</a
+            >
+            <a
+              href="../../index.html"
+              class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-[#1E2B4F] hover:bg-gray-100"
+              >Sign out</a
+            >
+          </div>
+        </div>
+
+      </div>
+    </nav>
+    <!-- End Header -->
+
+    <!-- Content -->
+    <main class="min-h-screen">
+
+      <!-- Hero -->
+      <section class="relative mt-12">
+        <!-- Hero Image -->
+        <div
+          class="hidden lg:block lg:absolute lg:z-10 lg:top-0 lg:right-0"
+          aria-hidden="true"
+        >
+          <img
+            src="/src/assets/images/hero-image.png"
+            class="bg-cover bg-center object-cover object-center max-h-[580px]"
+            alt="Hero Image"
+          />
+          <div
+            class="text-center absolute bottom-0 -left-20 -translate-y-14 bg-white px-7 py-5 rounded-xl shadow-2xl"
+          >
+            <h5 class="font-medium text-[#1E2B4F]">Dr. Kartika Me</h5>
+            <p class="text-xs text-[#AFAEC3] mt-1">Nutrionist</h1>
+            <span class="block text-xs text-[#1E2B4F] font-medium bg-[#F2F6FE] px-4 py-2 rounded-full text-center mt-7">Book Now</span>
+          </div>
+        </div>
+
+        <!-- Hero Description -->
+        <div class="relative mx-auto max-w-7xl px-4 lg:px-14 lg:py-16">
+          <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+            <div class="lg:col-span-6">
+
+              <!-- Label New -->
+              <h1>
+                <div class="flex items-center">
+                  <span
+                    class="text-white text-xs sm:text-sm font-medium bg-[#2AB49B] rounded-full px-8 py-2"
+                  >
+                    New
+                  </span>
+                  <span
+                    class="text-[#1E2B4F] text-[11px] sm:text-sm bg-[#F2F6FE] rounded-r-full px-8 py-2 relative -z-10 -ml-4"
+                  >
+                    Emergency call feature updated
+                  </span>
+                </div>
+                <span class="mt-6 block text-4xl font-semibold sm:text-5xl">
+                  <span class="block text-[#1E2B4F] leading-normal"
+                    >Meet Your Doctor. <br />
+                    Trusted & Professional.</span
+                  >
+                </span>
+              </h1>
+              <!-- End Label New -->
+
+              <!-- Text -->
+              <div class="flex flex-wrap gap-16 mt-8">
+                <div class="flex items-center gap-4">
+                  <div class="flex-shrink-0">
+                    <img
+                      src="/src/assets/images/service.svg"
+                      alt="service icon"
+                    />
+                  </div>
+                  <div>
+                    <h5 class="text-[#1E2B4F] text-lg font-medium">
+                      Best Recipe
+                    </h5>
+                    <p class="text-[#AFAEC3]">for your medicine</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex-shrink-0">
+                    <img
+                      src="/src/assets/images/service.svg"
+                      alt="service icon"
+                    />
+                  </div>
+                  <div>
+                    <h5 class="text-[#1E2B4F] text-lg font-medium">
+                      Free Consultation
+                    </h5>
+                    <p class="text-[#AFAEC3]">as we promised</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Text -->
+
+              <!-- CTA Button -->
+              <div class="grid lg:flex flex-wrap mt-20 gap-5">
+                <a
+                  href="sign-up.html"
+                  class="text-white text-lg font-medium text-center bg-[#0D63F3] rounded-full px-12 py-3"
+                >
+                  Sign Up
+                </a>
+                <a
+                  href="#"
+                  class="text-[#1E2B4F] text-lg font-medium text-center bg-[#F2F6FE] rounded-full px-16 py-3"
+                >
+                  Story
+                </a>
+              </div>
+              <!-- CTA Button -->
+              
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Hero -->
+
+      <!-- Popular Categories -->
+      <section class="mt-32 bg-[#F9FBFC]">
+        <div class="mx-auto max-w-7xl px-4 lg:px-14 py-16">
+          <h3 class="text-2xl font-semibold">Popular Categories</h3>
+          <p class="text-[#A7B0B5] mt-2">Quick way to get your first experience</p>
+
+          <!-- Card -->
+          <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-10 lg:gap-12 mt-10">
+            <a href="#" class="bg-white py-6 px-5 rounded-2xl transition hover:ring-offset-2 hover:ring-2 hover:ring-[#0D63F3]">
+              <h5 class="text-[#1E2B4F] text-lg font-semibold">Dermatology</h5>
+              <p class="text-[#AFAEC3] mt-1">143 doctors</p>
+            </a>
+
+            <a href="#" class="bg-white py-6 px-5 rounded-2xl transition hover:ring-offset-2 hover:ring-2 hover:ring-[#0D63F3]">
+              <h5 class="text-[#1E2B4F] text-lg font-semibold">Neurology</h5>
+              <p class="text-[#AFAEC3] mt-1">22 doctors</p>
+            </a>
+
+            <a href="#" class="bg-white py-6 px-5 rounded-2xl transition hover:ring-offset-2 hover:ring-2 hover:ring-[#0D63F3]">
+              <h5 class="text-[#1E2B4F] text-lg font-semibold">Dentist</h5>
+              <p class="text-[#AFAEC3] mt-1">74 doctors</p>
+            </a>
+
+            <a href="#" class="bg-white py-6 px-5 rounded-2xl transition hover:ring-offset-2 hover:ring-2 hover:ring-[#0D63F3]">
+              <h5 class="text-[#1E2B4F] text-lg font-semibold">Allergists</h5>
+              <p class="text-[#AFAEC3] mt-1">53 doctors</p>
+            </a>
+
+            <a href="#" class="bg-white py-6 px-5 rounded-2xl transition hover:ring-offset-2 hover:ring-2 hover:ring-[#0D63F3]">
+              <h5 class="text-[#1E2B4F] text-lg font-semibold">Cardiologists</h5>
+              <p class="text-[#AFAEC3] mt-1">794 doctors</p>
+            </a>
+          </div>
+          <!-- End Card -->
+        </div>
+      </section>
+      <!-- End Popular Categories -->
+
+      <!-- Best Doctors -->
+      <section class="mt-4 lg:mt-16">
+        <div class="mx-auto max-w-7xl px-4 lg:px-14 py-14">
+          <h3 class="text-[#1E2B4F] text-2xl font-semibold">Best Doctors</h3>
+          <p class="text-[#A7B0B5] mt-2">Help your life much better</p>
+
+          <!-- Card -->
+          <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 lg:gap-10 mt-10">
+            <a href="subject-consultation.html" class="group">
+              <div class="relative z-10 w-full h-[350px] rounded-2xl overflow-hidden">
+                <img src="/src/assets/images/doctor-1.png" class="w-full h-full bg-center bg-no-repeat object-cover object-center" alt="Doctor 1">
+                <div class="opacity-0 group-hover:opacity-100 transition-all ease-in absolute inset-0 bg-[#0D63F3] bg-opacity-70 flex justify-center items-center">
+                  <span class="text-[#0D63F3] font-medium bg-white rounded-full px-8 py-3">Book Now</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-5">
+                <div>
+                  <div class="text-[#1E2B4F] text-lg font-semibold">Dr. Galih Pratama</div>
+                  <div class="text-[#AFAEC3] mt-1">Cardiologist</div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <img src="/src/assets/images/star.svg" alt="Star">
+                  <span class="block text-[#1E2B4F] font-medium">4.5</span>
+                </div>
+              </div>
+            </a>
+
+            <a href="subject-consultation.html" class="group">
+              <div class="relative z-10 w-full h-[350px] rounded-2xl overflow-hidden">
+                <img src="/src/assets/images/doctor-2.png" class="w-full h-full bg-center bg-no-repeat object-cover object-center" alt="Doctor 1">
+                <div class="opacity-0 group-hover:opacity-100 transition-all ease-in absolute inset-0 bg-[#0D63F3] bg-opacity-70 flex justify-center items-center">
+                  <span class="text-[#0D63F3] font-medium bg-white rounded-full px-8 py-3">Book Now</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-5">
+                <div>
+                  <div class="text-[#1E2B4F] text-lg font-semibold">Dr. Anne Hulli</div>
+                  <div class="text-[#AFAEC3] mt-1">Dentist</div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <img src="/src/assets/images/star.svg" alt="Star">
+                  <span class="block text-[#1E2B4F] font-medium">4.8</span>
+                </div>
+              </div>
+            </a>
+
+            <a href="subject-consultation.html" class="group">
+              <div class="relative z-10 w-full h-[350px] rounded-2xl overflow-hidden">
+                <img src="/src/assets/images/doctor-3.png" class="w-full h-full bg-center bg-no-repeat object-cover object-center" alt="Doctor 1">
+                <div class="opacity-0 group-hover:opacity-100 transition-all ease-in absolute inset-0 bg-[#0D63F3] bg-opacity-70 flex justify-center items-center">
+                  <span class="text-[#0D63F3] font-medium bg-white rounded-full px-8 py-3">Book Now</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-5">
+                <div>
+                  <div class="text-[#1E2B4F] text-lg font-semibold">Dr. Masayoshi</div>
+                  <div class="text-[#AFAEC3] mt-1">Neurologist</div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <img src="/src/assets/images/star.svg" alt="Star">
+                  <span class="block text-[#1E2B4F] font-medium">4.5</span>
+                </div>
+              </div>
+            </a>
+
+            <a href="subject-consultation.html" class="group">
+              <div class="relative z-10 w-full h-[350px] rounded-2xl overflow-hidden">
+                <img src="/src/assets/images/doctor-4.png" class="w-full h-full bg-center bg-no-repeat object-cover object-center" alt="Doctor 1">
+                <div class="opacity-0 group-hover:opacity-100 transition-all ease-in absolute inset-0 bg-[#0D63F3] bg-opacity-70 flex justify-center items-center">
+                  <span class="text-[#0D63F3] font-medium bg-white rounded-full px-8 py-3">Book Now</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-5">
+                <div>
+                  <div class="text-[#1E2B4F] text-lg font-semibold">Dr. Shin Tai</div>
+                  <div class="text-[#AFAEC3] mt-1">Dermatology</div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <img src="/src/assets/images/star.svg" alt="Star">
+                  <span class="block text-[#1E2B4F] font-medium">4.5</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- End Card -->
+        </div>
+      </section>
+      <!-- End Best Doctors -->
+    </main>
+    <!-- End Content -->
+
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.8.0/dist/cdn.min.js"
+    ></script>
+  </body>
+</html>
